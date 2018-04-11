@@ -55,7 +55,9 @@
     "pages/API/canvas/canvas",
     "pages/API/background-audio/background-audio",
     "pages/API/get-location/get-location",
-    "pages/API/open-location/open-location"
+    "pages/API/open-location/open-location",
+    "pages/addCgi/addCgi",
+    "pages/index/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -87,6 +89,18 @@
         "iconPath": "image/wechat.png",
         "selectedIconPath": "image/wechatHL.png",
         "text": "接口"
+      },
+      {
+        "pagePath": "pages/addCgi/addCgi",
+        "iconPath": "image/wechat.png",
+        "selectedIconPath": "image/wechatHL.png",
+        "text": "CGI"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/wechat.png",
+        "selectedIconPath": "image/wechatHL.png",
+        "text": "我"
       }
     ]
   },
