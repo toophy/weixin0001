@@ -56,4 +56,15 @@
             <text>快速增加 CGI</text>
         </navigator>
     </view>
+
+    <!-- 测试get访问 -->
+    <view class="tunnel">
+        <view class="tunnel-text uploader-text">
+            <text bindtap="doRequest">请求CCS平台</text>
+            <switch class="tunnel-switch" bindchange="switchRequestCCS" color="#007AFF"/>
+        </view>
+        <view class="tunnel-text" wx:if="{{requestResultCCS}}">
+            <text class="request-text">{{'请求结果：' + requestResultCCS}}</text>
+        </view>
+    </view>
 </view>

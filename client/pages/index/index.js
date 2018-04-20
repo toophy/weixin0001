@@ -8,7 +8,8 @@ Page({
         userInfo: {},
         logged: false,
         takeSession: false,
-        requestResult: ''
+        requestResult: '',
+        requestResultCCS: ''
     },
 
     // 用户登录示例
@@ -216,5 +217,51 @@ Page({
         }
         util.showBusy('信道连接中...')
         this.setData({ tunnelStatus: 'closed' })
+    },
+
+    // 切换是否带有登录态
+    switchRequestCCS: function (e) {
+      this.setData({
+        takeSession: e.detail.value
+      })
+      this.doRequestCCS()
+    },
+
+    doRequestCCS: function () {
+      // util.showBusy('请求中...')
+      // var that = this
+      // var options = {
+      //   url: "http://www.baidu.com",
+      //   login: true,
+      //   success(result) {
+      //     util.showSuccess('请求成功完成')
+      //     console.log('request success', result)
+      //     that.setData({
+      //       requestResultCCS: JSON.stringify(result.data)
+      //     })
+      //   },
+      //   fail(error) {
+      //     util.showModel('请求失败', error);
+      //     console.log('request fail', error);
+      //   }
+      // }
+      // if (this.data.takeSession) {  // 使用 qcloud.request 带登录态登录
+      //   qcloud.request(options)
+      // } else {    // 使用 wx.request 则不带登录态
+      //   wx.request(options)
+      // }
+      wx.connectSocket({
+        url: 'https://wxapi.hotapp.cn/proxy/?url=http://admin.sog2.ly.djsol.6998.com:8989/',
+        data: {
+          x: '',
+          y: ''
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        protocols: ['protocol1'],
+        method: "GET"
+      })
     }
 })
+ 
