@@ -35,6 +35,7 @@ Page({
                         login: true,
                         success(result) {
                             util.showSuccess('登录成功')
+                            console.log(result)
                             that.setData({
                                 userInfo: result.data.data,
                                 logged: true
@@ -72,7 +73,7 @@ Page({
             login: true,
             success (result) {
                 util.showSuccess('请求成功完成')
-                console.log('request success', result)
+                // console.log('request success', result)
                 that.setData({
                     requestResult: JSON.stringify(result.data)
                 })
@@ -228,39 +229,19 @@ Page({
     },
 
     doRequestCCS: function () {
-      // util.showBusy('请求中...')
-      // var that = this
-      // var options = {
-      //   url: "http://www.baidu.com",
-      //   login: true,
-      //   success(result) {
-      //     util.showSuccess('请求成功完成')
-      //     console.log('request success', result)
-      //     that.setData({
-      //       requestResultCCS: JSON.stringify(result.data)
-      //     })
-      //   },
-      //   fail(error) {
-      //     util.showModel('请求失败', error);
-      //     console.log('request fail', error);
-      //   }
-      // }
-      // if (this.data.takeSession) {  // 使用 qcloud.request 带登录态登录
-      //   qcloud.request(options)
-      // } else {    // 使用 wx.request 则不带登录态
-      //   wx.request(options)
-      // }
-      wx.connectSocket({
-        url: 'https://wxapi.hotapp.cn/proxy/?url=http://admin.sog2.ly.djsol.6998.com:8989/',
-        data: {
-          x: '',
-          y: ''
+      // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
+      qcloud.request({
+        url: config.service.extUrl,
+        login: true,
+        success(result) {
+          util.showSuccess('ext ask 成功')
+          console.log(result)
         },
-        header: {
-          'content-type': 'application/json'
-        },
-        protocols: ['protocol1'],
-        method: "GET"
+
+        fail(error) {
+          util.showModel('ext ask 请求失败', error)
+          console.log('request fail', error)
+        }
       })
     }
 })

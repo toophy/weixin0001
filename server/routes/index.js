@@ -32,4 +32,8 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 
+// 用户信息接口（可以用来验证登录态）
+router.get('/ext', validationMiddleware, controllers.ext)
+
+
 module.exports = router
